@@ -8,4 +8,4 @@ else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
-./zynthian_webconf.py
+./zynthian_stage.py

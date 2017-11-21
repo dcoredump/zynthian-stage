@@ -30,20 +30,8 @@ import logging
 import tornado.ioloop
 import tornado.web
 from collections import OrderedDict
-from lib.LoginHandler import LoginHandler
-from lib.AudioConfigHandler import AudioConfigHandler
-from lib.DisplayConfigHandler import DisplayConfigHandler
-from lib.RebootHandler import RebootHandler
-from lib.SecurityConfigHandler import SecurityConfigHandler
-from lib.UiConfigHandler import UiConfigHandler
-from lib.WiringConfigHandler import WiringConfigHandler
-from lib.WifiConfigHandler import WifiConfigHandler
-from lib.WifiListHandler import WifiListHandler
-from lib.SnapshotConfigHandler import SnapshotConfigHandler
-from lib.MidiConfigHandler import MidiConfigHandler
-from lib.soundfont_config_handler import SoundfontConfigHandler
-from lib.SystemBackupHandler import SystemBackupHandler
-from lib.presets_config_handler import PresetsConfigHandler
+from lib.TestHandler import TestHandler
+from lib.TestHandler2 import TestHandler2
 
 #------------------------------------------------------------------------------
 
@@ -57,11 +45,10 @@ logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
 def make_app():
 	settings = {
 		"template_path": "templates",
-		"cookie_secret": "hsa9fKjf3Hf923hg6avJ)8fjh3mcGF12ht97834bh",
-		"login_url": "/login"
+		"cookie_secret": "0Gee1jas9uBeilif7ahK1bae0maet3ahy6oi0aeta",
 	}
 	return tornado.web.Application([
-		(r'/$', AudioConfigHandler),
+		(r'/$', TestHandler),
 		#(r'/()$', tornado.web.StaticFileHandler, {'path': 'html', "default_filename": "index.html"}),
 		(r'/(.*\.html)$', tornado.web.StaticFileHandler, {'path': 'html'}),
 		(r'/(favicon\.ico)$', tornado.web.StaticFileHandler, {'path': 'img'}),
@@ -69,20 +56,7 @@ def make_app():
 		(r'/css/(.*)$', tornado.web.StaticFileHandler, {'path': 'css'}),
 		(r'/js/(.*)$', tornado.web.StaticFileHandler, {'path': 'js'}),
 		(r'/bower_components/(.*)$', tornado.web.StaticFileHandler, {'path': 'bower_components'}),
-		(r"/login", LoginHandler),
-		(r"/api/lib-snapshot$", SnapshotConfigHandler),
-		(r"/api/lib-soundfont$", SoundfontConfigHandler),
-		(r"/api/lib-presets$", PresetsConfigHandler),
-		(r"/api/hw-audio$", AudioConfigHandler),
-		(r"/api/hw-display$", DisplayConfigHandler),
-		(r"/api/hw-wiring$", WiringConfigHandler),
-		(r"/api/ui-style$", UiConfigHandler),
-		(r"/api/ui-midi$", MidiConfigHandler),
-		(r"/api/sys-wifi$", WifiConfigHandler),
-		(r"/api/sys-backup$", SystemBackupHandler),
-		(r"/api/sys-security$", SecurityConfigHandler),
-		(r"/api/sys-reboot$", RebootHandler),
-		(r"/api/wifi/list$", WifiListHandler),
+		(r"/api/test$", TestHandler2),
 	], **settings)
 
 if __name__ == "__main__":
